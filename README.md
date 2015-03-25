@@ -9,3 +9,11 @@ ReflectOs auras les fonctionalités suivantes :
  * Deezer : fournis par l'API prévue a cet effet
  * Reconaissance vocale : fournis par l'API de google
  * Les prochains évènements : en lien avec le calendrier Google
+ ##Dépendances
+ Les dépendances de cette application Node.js sont les suivantes
+
+ * Express
+ * Socket.io
+Les dépendances ne sont pas incluses et doivent etres installées ensuite avec la commande suivante
+
+    npm install {nom de la dépendance}
