@@ -8,7 +8,11 @@ app.get("/",function(request,response){
 });
 
 io.on('connection',function(socket){
-	console.log("Connexion socket : "+socket.handshake.address.address);
+	console.log("Connexion socket : "+socket.request.socket.remoteAddress);
+
+	socket.on("disconnect",function(){
+		console.log("Déconnexion socket : "+socket.request.socket.remoteAddress)
+	});
 });
 
 http.listen(80,function(){
