@@ -4,7 +4,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 app.get("/",function(request,response){
-	response.send("Hello world !");
+	response.render("display.html.twig");
 });
 
 io.on('connection',function(socket){
