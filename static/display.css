@@ -1,3 +1,5 @@
+/*--Basics--*/
+
 *
 {
 	margin: 0;
@@ -9,4 +11,51 @@
 	width: 100vw;
 	height: 100vh;
 	background-color: #2B2B2B;
+	overflow: hidden;
+}
+
+/*--Grid--*/
+
+#app-grid
+{
+	width: 100%;
+	height: 100%;
+}
+
+#app-grid .row
+{
+	width: 100%;
+	height: 50%;
+}
+
+#app-grid .cel 
+{
+	box-shadow: #0078FF 0 0 15px inset;
+	height: 100%;
+	display: inline-block;
+}
+
+#app-grid .row-apps .cel 
+{
+	width: 50%;
+}
+
+#app-grid .row-widgets .cel 
+{
+	width: 12.5%;
+}
+
+#app-grid .row-widgets .cel.width-2
+{
+	width: 25%;
+}
+
+#app-grid .row-widgets .cel.width-3
+{
+	width: 37.5%;
+}
+
+#app-grid .row-widgets .cel.width-4
+{
+	width: 50%;
 }
