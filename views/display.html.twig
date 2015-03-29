@@ -36,6 +36,10 @@
 		<script type="text/javascript" src="/static/rejexFilter.js"></script>
 		<script>
 			var socket = new io();
+
+			$(".cel:regex(class,wid\-(.*))").each(function(index) {
+				 $(this).html("Widget");
+			});
 		</script>
 	</body>
 </html>
