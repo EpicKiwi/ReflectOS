@@ -1,0 +1,10 @@
+.wid-meteo table
+{
+	width: 100%;
+}
+
+.wid-meteo table td:nth-child(1)
+{
+	font-size: 25px;
+	text-align: center;
+}
