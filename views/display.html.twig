@@ -40,11 +40,10 @@
 
 			$(".cel:regex(class,wid\-(.*))").each(function(index) {
 				var widgetId = $(this).attr("class").replace(/.*wid\-(.*)/i,"$1");
-				widgets.push(widgetId);
+				socket.emit("getWidget",widgetId);
 			});
 
-			console.log("Widget trouvés : ");
-			console.table(widgets);
+
 		</script>
 	</body>
 </html>

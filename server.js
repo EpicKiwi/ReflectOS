@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var fs = require('fs');
 
 app.use("/static",express.static(__dirname+"/static"));
 
@@ -10,10 +11,24 @@ app.get("/",function(request,response){
 });
 
 io.on('connection',function(socket){
-	console.log("Connexion socket : "+socket.request.socket.remoteAddress);
+	var socketIp = socket.request.socket.remoteAddress;
+	console.log(socketIp+" : Connexion socket");
+
+	socket.on("getWidget",function(widgetId){
+		fs.readdir(__dirname+"/widgets/"+widgetId,function(err,files){
+			if(err == null)
+			{
+				console.log(socketIp+" : Chargement du widget "+widgetId);
+			}
+			else
+			{
+				console.warn(socketIp+" : erreur de chargement du widget "+err.code);
+			}
+		});
+	});
 
 	socket.on("disconnect",function(){
-		console.log("Déconnexion socket : "+socket.request.socket.remoteAddress)
+		console.log(socketIp+" : Déconnexion socket");
 	});
 });
 
