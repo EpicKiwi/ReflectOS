@@ -9,15 +9,15 @@
 		<div id="display">
 			<div id="app-grid">
 				<div class="row row-widgets">
-					<div class="cel width-2 widget wid-meteo">
+					<div class="cel width-2 wid-hello-world">
 
 					</div><div class="cel">
 						
-					</div><div class="cel">
+					</div><div class="cel wid-quote">
 						
 					</div><div class="cel">
 						
-					</div><div class="cel width-3 widget wid-news">
+					</div><div class="cel width-3 wid-news">
 						
 					</div>
 				</div>
@@ -36,10 +36,15 @@
 		<script type="text/javascript" src="/static/rejexFilter.js"></script>
 		<script>
 			var socket = new io();
+			var widgets = [];
 
 			$(".cel:regex(class,wid\-(.*))").each(function(index) {
-				 $(this).html("Widget");
+				var widgetId = $(this).attr("class").replace(/.*wid\-(.*)/i,"$1");
+				widgets.push(widgetId);
 			});
+
+			console.log("Widget trouvés : ");
+			console.table(widgets);
 		</script>
 	</body>
 </html>
