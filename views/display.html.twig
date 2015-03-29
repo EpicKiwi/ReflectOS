@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="UTF-8"/>
 		<link rel="stylesheet" type="text/css" href="/static/display.css">
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 		<title>ReflectOS Display</title>
 		<style>
 		</style>
@@ -11,11 +12,11 @@
 		<div id="display">
 			<div id="app-grid">
 				<div class="row row-widgets">
-					<div class="cel width-2 wid-hello-world">
+					<div class="cel width-2 wid-meteo">
 
 					</div><div class="cel">
 						
-					</div><div class="cel">
+					</div><div class="cel wid-hello-world">
 						
 					</div><div class="cel">
 						
@@ -49,7 +50,6 @@
 				var widgetContainer = $(".wid-"+data.infos.id);
 				if(widgetContainer != null)
 				{
-					console.log(data);
 					widgets.push(data.infos);
 					widgetContainer.html(data.html);
 					$("style").append(data.css);

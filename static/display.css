@@ -60,3 +60,32 @@
 {
 	width: 50%;
 }
+
+#app-grid .cel
+{
+	color: white;
+	font-family: "open sans";
+	font-weight: normal;
+	overflow: hidden;
+	text-align: justify;
+}
+
+#app-grid .cel h2.app-title
+{
+	width: 90%;
+	margin-left: 5%;
+	margin-right: 5%;
+	border-bottom: solid 1px white;
+	font-size: 25px;
+	text-align: center;
+	letter-spacing: 10px;
+}
+
+#app-grid .cel .content
+{
+	width : 90%;
+	padding-left: 5%;
+	padding-right: 5%;
+	padding-top: 10px;
+	font-size: 15px;
+}
