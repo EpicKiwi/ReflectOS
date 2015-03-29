@@ -6,7 +6,7 @@ var widgetInfos = {
 	optimalSize: 2
 }
 
-exports.load = function(){
+exports.load = function(callback){
 	var result = {
 		infos: widgetInfos,
 		html: fs.readFileSync(__dirname+"/default.html","UTF-8"),
@@ -15,5 +15,14 @@ exports.load = function(){
 		onUpdate: "function(){"+fs.readFileSync(__dirname+"/onupdate.js","UTF-8")+"}"
 	}
 
-	return result;
+	callback(result);
+}
+
+exports.update = function(callback){
+	var result = {
+		infos : widgetInfos,
+		data : ""
+	}
+
+	callback(result);
 }

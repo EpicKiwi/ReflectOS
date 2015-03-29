@@ -20,7 +20,25 @@ io.on('connection',function(socket){
 			{
 				console.log(socketIp+" : Chargement du widget "+widgetId);
 				var widget = require("./widgets/"+widgetId+"/widget.js");
-				socket.emit("openWidget",widget.load());
+				widget.load(function(data){
+					socket.emit("openhWidget",data);
+				});
+			}
+			else
+			{
+				console.warn(socketIp+" : erreur de chargement du widget "+err.code);
+			}
+		});
+	});
+
+	socket.on("updateWidget",function(widgetId){
+		fs.readdir("./widgets/"+widgetId,function(err,files){
+			if(err == null)
+			{
+				var widget = require("./widgets/"+widgetId+"/widget.js");
+				widget.update(function(data){
+					socket.emit("refreshWidget",data);
+				});
 			}
 			else
 			{

@@ -55,12 +55,24 @@
 					$("style").append(data.css);
 					eval("widgets["+index+"].onLoad = "+data.onLoad);
 					eval("widgets["+index+"].onUpdate = "+data.onUpdate);
+					widgets[index].onLoad();
 				}
 				else
 				{
 					console.warn("Le widget "+data.infos.name+" n'a pas de conteneur associé");
 				}
-			})
+			});
+
+			socket.on("update",function(data){
+				for(var i = 0; i<widgets.length; i++)
+				{
+					if(widgets[i].id == data.infos.id)
+					{
+						widgets[i].onUpdate(data.data);
+						return ;
+					}
+				}
+			});
 
 		</script>
 	</body>
