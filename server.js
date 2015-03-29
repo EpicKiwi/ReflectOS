@@ -21,7 +21,7 @@ io.on('connection',function(socket){
 				console.log(socketIp+" : Chargement du widget "+widgetId);
 				var widget = require("./widgets/"+widgetId+"/widget.js");
 				widget.load(function(data){
-					socket.emit("openhWidget",data);
+					socket.emit("openWidget",data);
 				});
 			}
 			else
