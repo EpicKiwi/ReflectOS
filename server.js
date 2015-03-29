@@ -15,10 +15,12 @@ io.on('connection',function(socket){
 	console.log(socketIp+" : Connexion socket");
 
 	socket.on("getWidget",function(widgetId){
-		fs.readdir(__dirname+"/widgets/"+widgetId,function(err,files){
+		fs.readdir("./widgets/"+widgetId,function(err,files){
 			if(err == null)
 			{
 				console.log(socketIp+" : Chargement du widget "+widgetId);
+				var widget = require("./widgets/"+widgetId+"/widget.js");
+				socket.emit("openWidget",widget.load());
 			}
 			else
 			{

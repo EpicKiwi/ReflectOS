@@ -4,6 +4,8 @@
 		<meta charset="UTF-8"/>
 		<link rel="stylesheet" type="text/css" href="/static/display.css">
 		<title>ReflectOS Display</title>
+		<style>
+		</style>
 	</head>
 	<body>
 		<div id="display">
@@ -13,11 +15,11 @@
 
 					</div><div class="cel">
 						
-					</div><div class="cel wid-quote">
+					</div><div class="cel">
 						
 					</div><div class="cel">
 						
-					</div><div class="cel width-3 wid-news">
+					</div><div class="cel width-3">
 						
 					</div>
 				</div>
@@ -43,6 +45,20 @@
 				socket.emit("getWidget",widgetId);
 			});
 
+			socket.on("openWidget",function(data){
+				var widgetContainer = $(".wid-"+data.infos.id);
+				if(widgetContainer != null)
+				{
+					console.log(data);
+					widgets.push(data.infos);
+					widgetContainer.html(data.html);
+					$("style").append(data.css);
+				}
+				else
+				{
+					console.warn("Le widget "+data.infos.name+" n'a pas de conteneur associé");
+				}
+			})
 
 		</script>
 	</body>
