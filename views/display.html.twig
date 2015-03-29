@@ -49,9 +49,12 @@
 				var widgetContainer = $(".wid-"+data.infos.id);
 				if(widgetContainer != null)
 				{
+					var index = widgets.length;
 					widgets.push(data.infos);
 					widgetContainer.html(data.html);
 					$("style").append(data.css);
+					eval("widgets["+index+"].onLoad = "+data.onLoad);
+					eval("widgets["+index+"].onUpdate = "+data.onUpdate);
 				}
 				else
 				{
