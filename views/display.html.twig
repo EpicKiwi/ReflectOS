@@ -63,7 +63,7 @@
 				}
 			});
 
-			socket.on("update",function(data){
+			socket.on("refreshWidget",function(data){
 				for(var i = 0; i<widgets.length; i++)
 				{
 					if(widgets[i].id == data.infos.id)
