@@ -92,7 +92,7 @@ function getDay(date)
 		return "Aujourd'hui";
 	}
 
-	if((date.getDay()+1) == now.getDay() && diff < 2)
+	if(date.getDay() == (now.getDay()+1) && diff < 2)
 	{
 		return "Demain";
 	}
