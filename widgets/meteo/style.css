@@ -40,3 +40,8 @@
 {
 	margin-bottom: 20px;
 }
+
+.wid-meteo .meteo-row.reduce .meteo-field.meteo-hour
+{
+	text-align: center;
+}

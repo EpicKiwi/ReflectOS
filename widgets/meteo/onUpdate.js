@@ -27,7 +27,7 @@ for (var i = 0; i < 10; i++) {
 	html +=  	"<div class='meteo-icon'><i class=\"wi wi-"+data.forecast[i].weatherClass+"\"></i></div>"+
 					"<div class='meteo-info'>"+
 						"<span class='meteo-field'>"+data.forecast[i].day+"</span>"+
-						"<span class='meteo-field'>"+date.getHours()+" H </span>"+
+						"<span class='meteo-field meteo-hour'>"+date.getHours()+" H </span>"+
 						"<span class='meteo-field'><i class=\"wi wi-thermometer\"></i> "+data.forecast[i].temp+"°C</span>"+
 						"<span class='meteo-field'>Vent</span>"+
 					"</div>"+
