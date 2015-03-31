@@ -7,7 +7,7 @@ var widgetInfos = {
 	optimalSize: 2,
 }
 
-exports.load = function load(callback){
+var load = function(callback){
 	var result = {
 		infos: widgetInfos,
 		html: fs.readFileSync(__dirname+"/default.html","UTF-8"),
@@ -18,8 +18,39 @@ exports.load = function load(callback){
 	callback(result);
 }
 
-exports.update = function update(callback){
-	console.log("Mise à jour du widget Horloge");
+var update = function(callback){
+	var result = {
+		infos : widgetInfos
+	};
+
+	var date = new Date();
+
+	var hours = "";
+	if(date.getHours() < 10)
+	{
+		hours += "0"+date.getHours();
+	}
+	else
+	{
+		hours += date.getHours();
+	}
+
+	var minutes = "";
+	if(date.getMinutes() < 10)
+	{
+		minutes += "0"+date.getMinutes();
+	}
+	else
+	{
+		minutes += date.getMinutes();
+	}
+
+	result.data = {
+		hours: hours,
+		minutes: minutes
+	}
+	reportUpdate(10000,callback);
+	callback(result);
 }
 
 function reportUpdate(time, callback)
@@ -28,3 +59,6 @@ function reportUpdate(time, callback)
 		update(callback);
 	},time);
 }
+
+exports.update = update;
+exports.load = load;

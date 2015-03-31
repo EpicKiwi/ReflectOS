@@ -1,2 +1,2 @@
 console.log("Widget horloge chargé");
-//socket.emit("updateWidget","meteo");
+socket.emit("updateWidget","horloge");
