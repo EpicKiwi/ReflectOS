@@ -9,7 +9,7 @@ var widgetInfos = {
 	showNight: false
 }
 
-exports.load = function(callback){
+exports.load = function load(callback){
 	var result = {
 		infos: widgetInfos,
 		html: fs.readFileSync(__dirname+"/default.html","UTF-8"),
@@ -21,7 +21,7 @@ exports.load = function(callback){
 	callback(result);
 }
 
-exports.update = function(callback){
+exports.update = function update(callback){
 	console.log("Mise à jour du widget Météo");
 	var result = {
 		infos : widgetInfos
@@ -66,6 +66,7 @@ exports.update = function(callback){
 				result.data.forecast.push(oneForecast);
 			}
 
+			reportUpdate(3600000,callback);
 			callback(result);
 
 		});
@@ -102,4 +103,11 @@ function getDay(date)
 function getWeatherClass(code)
 {
 	return "day-sunny";
+}
+
+function reportUpdate(time, callback)
+{
+	setTimeout(function(){
+		update(callback);
+	},time);
 }
