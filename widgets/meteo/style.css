@@ -46,9 +46,11 @@
 	text-align: center;
 }
 
-.wid-meteo .meteo-row .meteo-field.compass i
+.wid-meteo .meteo-row .meteo-field i
 {
 	font-size: 20px;
 	display: inline-block;
 	margin-right: 5px;
+	position: relative;
+	bottom: -2px;
 }
