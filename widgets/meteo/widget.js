@@ -61,7 +61,9 @@ var update = function(callback){
 					weatherClass : getWeatherClass(response.list[i].weather[0].id),
 					day : getDay(date),
 					date : response.list[i].dt*1000,
-					temp : Math.round((response.list[i].main.temp-273.15)*100)/100
+					temp : Math.round((response.list[i].main.temp-273.15)*100)/100,
+					windCompass : Math.round(response.list[i].wind.deg/15)*15,
+					windSpeed : Math.round(response.list[i].wind.speed*3.6)
 				}
 				result.data.forecast.push(oneForecast);
 			}

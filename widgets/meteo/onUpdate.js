@@ -29,7 +29,7 @@ for (var i = 0; i < 10; i++) {
 						"<span class='meteo-field'>"+data.forecast[i].day+"</span>"+
 						"<span class='meteo-field meteo-hour'>"+date.getHours()+" H </span>"+
 						"<span class='meteo-field'><i class=\"wi wi-thermometer\"></i> "+data.forecast[i].temp+"°C</span>"+
-						"<span class='meteo-field'>Vent</span>"+
+						"<span class='meteo-field compass'><i class=\"wi wi-wind-default _"+data.forecast[i].windCompass+"-deg\"></i>"+data.forecast[i].windSpeed+" Km/h</span>"+
 					"</div>"+
 				"</div>";
 	$(".wid-meteo .content").append(html);
