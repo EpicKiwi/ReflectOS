@@ -1,7 +1,11 @@
-.wid-horloge .clock
+.wid-horloge div
 {
 	width: 100%;
-	font-size: 100px;
 	text-align: center;
 	font-family: "Play";
+}
+
+.wid-horloge .clock
+{
+	font-size: 100px;
 }
