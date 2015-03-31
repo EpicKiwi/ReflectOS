@@ -1,13 +1,31 @@
 var express = require('express');
 var app = express();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var http = require('http');
+var server = http.Server(app);
+var io = require('socket.io')(server);
 var fs = require('fs');
 
 app.use("/static",express.static(__dirname+"/static"));
 
 app.get("/",function(request,response){
-	response.render("display.html.twig");
+	var requestOptions = {
+	  hostname: 'www.bing.com',
+	  port: 80,
+	  path: '/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=fr-fr'
+	};
+
+	http.get(requestOptions,function(res){
+		var datas = "";
+
+		res.on("data",function(chunk){
+			datas += chunk;
+		});
+
+		res.on("end",function(){
+			datas = JSON.parse(datas);
+			response.render("display.html.twig",{background:"http://www.bing.com"+datas.images[0].url});
+		});
+	});
 });
 
 io.on('connection',function(socket){
@@ -52,6 +70,6 @@ io.on('connection',function(socket){
 	});
 });
 
-http.listen(80,function(){
+server.listen(80,function(){
 	console.log("Ecoute de connexion ...");
 });
