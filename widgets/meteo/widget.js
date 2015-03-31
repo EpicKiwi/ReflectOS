@@ -9,7 +9,7 @@ var widgetInfos = {
 	showNight: false
 }
 
-exports.load = function load(callback){
+var load = function(callback){
 	var result = {
 		infos: widgetInfos,
 		html: fs.readFileSync(__dirname+"/default.html","UTF-8"),
@@ -21,7 +21,7 @@ exports.load = function load(callback){
 	callback(result);
 }
 
-exports.update = function update(callback){
+var update = function(callback){
 	console.log("Mise à jour du widget Météo");
 	var result = {
 		infos : widgetInfos
@@ -111,3 +111,6 @@ function reportUpdate(time, callback)
 		update(callback);
 	},time);
 }
+
+exports.load = load;
+exports.update = update;
