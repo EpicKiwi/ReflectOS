@@ -1,10 +1,42 @@
-.wid-meteo table
+.wid-meteo .meteo-row
 {
 	width: 100%;
+	font-size: 15px;
 }
 
-.wid-meteo table td:nth-child(1)
+.wid-meteo .meteo-icon
 {
-	font-size: 25px;
 	text-align: center;
+	width: 15%;
+	display:inline-block;
+	font-size: 35px;
+}
+
+.wid-meteo .meteo-info
+{
+	width: 85%;
+	display:inline-block;
+}
+
+.wid-meteo .meteo-row .meteo-field
+{
+	width: 50%;
+	display:inline-block;
+}
+
+.wid-meteo .meteo-row.reduce .meteo-field
+{
+	width: 25%;
+	display:inline-block;
+}
+
+.wid-meteo .meteo-row.reduce .meteo-icon
+{
+	font-size: 20px;
+	display:inline-block;
+}
+
+.wid-meteo .meteo-row.last, .wid-meteo .meteo-row.first
+{
+	margin-bottom: 20px;
 }
