@@ -55,7 +55,7 @@ var update = function(callback){
 					var date = new Date(response.list[i].dt*1000);
 					var now = new Date();
 
-					if(date.getHours() < 8 || date.getHours() > 17 || (date.getHours() < now.getHours() && date.getDate() == now.getDate()) )
+					if(date.getHours() < 8 || date.getHours() > 20 || (date.getHours() < now.getHours() && date.getDate() == now.getDate()) )
 					{
 						continue;
 					}
