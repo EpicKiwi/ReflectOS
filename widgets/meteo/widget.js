@@ -104,7 +104,97 @@ function getDay(date)
 
 function getWeatherClass(code)
 {
-	return "day-sunny";
+	var classes = {
+		0: "cloud-refresh",
+
+		200: "day-storm-showers",
+		201: "thunderstorm",
+		202: "thunderstorm",
+		210: "lightning",
+		211: "lightning",
+		212: "lightning",
+		221: "lightning",
+		230: "storm-showers",
+		231: "storm-showers",
+		232: "thunderstorm",
+
+		300: "cloudy",
+		301: "cloudy",
+		302: "cloudy",
+		302: "day-showers",
+		302: "showers",
+		302: "showers",
+		313: "day-rain-mix",
+		314: "rain-mix",
+		321: "rain-mix",
+
+		500: "rain",
+		501: "rain",
+		502: "rain-wind",
+		503: "rain-wind",
+		504: "rain-wind",
+		511: "rain-mix",
+		520: "showers",
+		521: "showers",
+		522: "rain",
+		531: "rain",
+
+		600: "day-snow",
+		601: "snow",
+		602: "snow",
+		611: "sleet",
+		612: "sleet",
+		615: "rain-mix",
+		616: "rain-mix",
+		620: "snow",
+		621: "snow-wind",
+		622: "snow-wind",
+
+		701: "fog",
+		711: "smoke",
+		721: "day-fog",
+		731: "dust",
+		741: "fog",
+		751: "dust",
+		761: "dust",
+		762: "dust",
+		771: "dust",
+		781: "tornado",
+
+		800: "day-sunny",
+		801: "day-sunny",
+		802: "day-cloudy",
+		803: "cloudy",
+		804: "cloudy",
+
+		900: "tornado",
+		901: "storm-showers",
+		902: "hurricane",
+		903: "snowflake-cold",
+		904: "hot",
+		905: "cloudy-windy",
+		906: "hail",
+
+		951: "day-sunny",
+		952: "day-sunny",
+		953: "day-sunny",
+		954: "day-sunny",
+		955: "day-sunny",
+		956: "cloudy-windy",
+		957: "cloudy-windy",
+		958: "hail",
+		959: "hail",
+		960: "storm-showers",
+		961: "storm-showers",
+		962: "hurricane",
+	}
+
+	if(classes[code] == null)
+	{
+		code = 0;
+	}
+
+	return classes[code];
 }
 
 function reportUpdate(time, callback)
