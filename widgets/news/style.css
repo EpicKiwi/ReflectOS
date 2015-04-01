@@ -1,0 +1,14 @@
+.wid-news .news-row
+{
+	width: 100%;
+	font-size: 25px;
+	white-space : nowrap;
+	margin-bottom: 15px;
+	position: relative;
+}
+
+.wid-news .news-row.reduce
+{
+	font-size: 15px;
+	white-space : normal;
+}
