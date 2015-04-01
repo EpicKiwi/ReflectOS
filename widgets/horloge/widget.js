@@ -12,8 +12,8 @@ var load = function(callback){
 		infos: widgetInfos,
 		html: fs.readFileSync(__dirname+"/default.html","UTF-8"),
 		css: fs.readFileSync(__dirname+"/style.css","UTF-8"),
-		onLoad: "function(thisApp){"+fs.readFileSync(__dirname+"/onload.js","UTF-8")+"}",
-		onUpdate: "function(data){"+fs.readFileSync(__dirname+"/onupdate.js","UTF-8")+"}"
+		onLoad: "function(thisApp){"+fs.readFileSync(__dirname+"/onLoad.js","UTF-8")+"}",
+		onUpdate: "function(data){"+fs.readFileSync(__dirname+"/onUpdate.js","UTF-8")+"}"
 	}
 	callback(result);
 }
