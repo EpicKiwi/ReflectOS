@@ -51,8 +51,9 @@ var update = function(callback){
 			for(var i = 0; i<response.list.length; i++)
 			{
 				var date = new Date(response.list[i].dt*1000);
+				var now = new Date();
 
-				if(date.getHours() < 8 || date.getHours() > 17 )
+				if(date.getHours() < 8 || date.getHours() > 17 || date.getHours() < now.getHours() )
 				{
 					continue;
 				}
@@ -68,7 +69,7 @@ var update = function(callback){
 				result.data.forecast.push(oneForecast);
 			}
 
-			reportUpdate(3600000,callback);
+			reportUpdate(1200000,callback);
 			callback(result);
 
 		});
