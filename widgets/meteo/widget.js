@@ -5,7 +5,7 @@ var widgetInfos = {
 	id: "meteo",
 	name: "Météo",
 	optimalSize: 2,
-	city: "Havre",
+	city: "le%20havre",
 	showNight: false
 }
 
@@ -42,35 +42,43 @@ var update = function(callback){
 		res.on("end",function(chunk){
 			response = JSON.parse(response);
 
-			result.data = {
-				cityName: response.city.name,
-				cityCountry: response.city.country,
-				forecast: []
-			};
+			if(response.cod == 200)
+			{			
+				result.data = {
+					cityName: response.city.name,
+					cityCountry: response.city.country,
+					forecast: []
+				};
 
-			for(var i = 0; i<response.list.length; i++)
-			{
-				var date = new Date(response.list[i].dt*1000);
-				var now = new Date();
-
-				if(date.getHours() < 8 || date.getHours() > 17 || date.getHours() < now.getHours() )
+				for(var i = 0; i<response.list.length; i++)
 				{
-					continue;
-				}
+					var date = new Date(response.list[i].dt*1000);
+					var now = new Date();
 
-				var oneForecast = {
-					weatherClass : getWeatherClass(response.list[i].weather[0].id),
-					day : getDay(date),
-					date : response.list[i].dt*1000,
-					temp : Math.round((response.list[i].main.temp-273.15)*100)/100,
-					windCompass : Math.round(response.list[i].wind.deg/15)*15,
-					windSpeed : Math.round(response.list[i].wind.speed*3.6)
+					if(date.getHours() < 8 || date.getHours() > 17 || (date.getHours() < now.getHours() && date.getDate() == now.getDate()) )
+					{
+						continue;
+					}
+
+					var oneForecast = {
+						weatherClass : getWeatherClass(response.list[i].weather[0].id),
+						day : getDay(date),
+						date : response.list[i].dt*1000,
+						temp : Math.round((response.list[i].main.temp-273.15)*100)/100,
+						windCompass : Math.round(response.list[i].wind.deg/15)*15,
+						windSpeed : Math.round(response.list[i].wind.speed*3.6)
+					}
+					result.data.forecast.push(oneForecast);
 				}
-				result.data.forecast.push(oneForecast);
+				callback(result);
+				reportUpdate(1200000,callback);
+			}
+			else
+			{
+				console.warn("Erreur de mise a jour du widget météo, code "+response.cod+". Nouvelle tentative dans 1s");
+				reportUpdate(1000,callback);
 			}
 
-			reportUpdate(1200000,callback);
-			callback(result);
 
 		});
 	});
