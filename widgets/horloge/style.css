@@ -9,3 +9,8 @@
 {
 	font-size: 100px;
 }
+
+.wid-horloge .clock .hours
+{
+	font-weight: bold;
+}
