@@ -5,7 +5,7 @@ var widgetInfos = {
 	id: "news",
 	name: "News",
 	optimalSize: 2,
-	feedAddress: "http://api.feedzilla.com/v1/categories/419/articles.json"
+	feedAddress: "http://api.feedzilla.com/v1/categories/419/articles.json?order=date"
 }
 
 var load = function(callback){
@@ -39,7 +39,12 @@ var update = function(callback){
 			console.log("Données reçus");
 			data = JSON.parse(data);
 			result.data.newsTitle = data.description;
-			result.data.articles = data.articles;
+			result.data.articles = [];
+			for(var i = data.articles.length-1; i>0; i--)
+			{
+				result.data.articles.push(data.articles[i]);
+			};
+
 			reportUpdate(600000,callback);
 			callback(result);
 		});
