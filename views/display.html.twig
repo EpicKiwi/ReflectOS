@@ -56,6 +56,9 @@
 			var widgets = [];
 			var backApps = [];
 
+			//A changer !!!!
+			socket.emit("getBackApp","bing-background");
+
 			$(".cel:regex(class,wid\-(.*))").each(function(index) {
 				var widgetId = $(this).attr("class").replace(/.*wid\-(.*)/i,"$1");
 				socket.emit("getWidget",widgetId);
