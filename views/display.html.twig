@@ -11,7 +11,7 @@
 		</style>
 	</head>
 	<body>
-		<div id="display" style="background-image: url('{{background}}');">
+		<div id="display">
 			<div id="app-grid">
 				<div class="row row-widgets">
 					<div class="cel width-2 wid-meteo">
@@ -54,6 +54,7 @@
 		<script>
 			var socket = new io();
 			var widgets = [];
+			var backApps = [];
 
 			$(".cel:regex(class,wid\-(.*))").each(function(index) {
 				var widgetId = $(this).attr("class").replace(/.*wid\-(.*)/i,"$1");
@@ -84,6 +85,25 @@
 					if(widgets[i].id == data.infos.id)
 					{
 						widgets[i].onUpdate(data.data);
+						return ;
+					}
+				}
+			});
+
+			socket.on("openBackApp",function(data){
+				var index = backApps.length;
+				backApps.push(data);
+				eval("backApps["+index+"].onLoad = "+backApps[index].onLoad);
+				eval("backApps["+index+"].onUpdate = "+backApps[index].onUpdate);
+				backApps[index].onLoad();
+			});
+
+			socket.on("refreshBackApp",function(data){
+				for(var i = 0; i<backApps.length; i++)
+				{
+					if(backApps[i].id == data.id)
+					{
+						backApps[i].onUpdate(data.data);
 						return ;
 					}
 				}

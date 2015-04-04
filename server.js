@@ -8,24 +8,7 @@ var fs = require('fs');
 app.use("/static",express.static(__dirname+"/static"));
 
 app.get("/",function(request,response){
-	var requestOptions = {
-	  hostname: 'www.bing.com',
-	  port: 80,
-	  path: '/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=fr-fr'
-	};
-
-	http.get(requestOptions,function(res){
-		var datas = "";
-
-		res.on("data",function(chunk){
-			datas += chunk;
-		});
-
-		res.on("end",function(){
-			datas = JSON.parse(datas);
-			response.render("display.html.twig",{background:"http://www.bing.com"+datas.images[0].url});
-		});
-	});
+	response.render("display.html.twig");
 });
 
 io.on('connection',function(socket){
@@ -61,6 +44,38 @@ io.on('connection',function(socket){
 			else
 			{
 				console.warn(socketIp+" : erreur de chargement du widget "+err.code);
+			}
+		});
+	});
+
+	socket.on("getBackApp",function(appId){
+		fs.readdir("./backApps/"+appId,function(err,files){
+			if(err == null)
+			{
+				var backApp = require("./backApps/"+appId+"/"+appId+".js");
+				backApp.load(function(data){
+					socket.emit("openBackApp",data);
+				});
+			}
+			else
+			{
+				console.warn(socketIp+" : erreur de chargement de la BackApp "+err.code);
+			}
+		});
+	});
+
+	socket.on("updateBackApp",function(appId){
+		fs.readdir("./backApps/"+appId,function(err,files){
+			if(err == null)
+			{
+				var backApp = require("./backApps/"+appId+"/"+appId+".js");
+				backApp.update(function(data){
+					socket.emit("refreshBackApp",data);
+				});
+			}
+			else
+			{
+				console.warn(socketIp+" : erreur de chargement de la BackApp "+err.code);
 			}
 		});
 	});
