@@ -138,6 +138,7 @@ io.on('connection',function(socket){
 
 	socket.on("refreshProfils",function(data){
 		profils = data;
+		io.emit("forceRefresh");
 	});
 
 	socket.on("disconnect",function(){
