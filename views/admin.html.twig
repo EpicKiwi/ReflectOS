@@ -60,8 +60,21 @@
 									<div class="wid-row" ng-repeat="row in profil.widgets track by $index">
 										<div class="wid-cel width-{[cel.width]}" ng-click="setWidget(profil.widgets.indexOf(row),row.indexOf(cel))" ng-repeat="cel in row">
 											<div class="wid-infos">
-												{[getWidgetInfos(cel.widget).name]}<br/><br/>
-												<button ng-hide="cel.widget == null" type="button" class="btn btn-xs btn-danger" ng-click="deleteWidget(profil.widgets.indexOf(row),row.indexOf(cel))">Supprimmer</button>
+
+												<button type="button" ng-hide="row.indexOf(cel) == 0" ng-click="resizeLeft(profil.widgets.indexOf(row),row.indexOf(cel))" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-chevron-left"></span></button>
+
+												<button type="button" ng-show="row.indexOf(cel) == 0 && cel.width > 1" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+
+												<div class="arrowSep"></div>
+
+												<button type="button" ng-click="resizeRight(profil.widgets.indexOf(row),row.indexOf(cel))" ng-hide="row.indexOf(cel) == row.length - 1" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-chevron-right"></span></button>
+
+												<button type="button" ng-click="addRight(profil.widgets.indexOf(row),row.indexOf(cel))" ng-show="row.indexOf(cel) == row.length - 1 && cel.width > 1" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></button><br/><br/>
+
+												<div ng-hide="cel.widget == null">
+													{[getWidgetInfos(cel.widget).name]}<br/><br/>
+													<button type="button" class="btn btn-xs btn-danger" ng-click="deleteWidget(profil.widgets.indexOf(row),row.indexOf(cel))">Supprimmer</button>
+												</div>
 											</div>
 										</div>
 									</div>

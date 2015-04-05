@@ -62,6 +62,26 @@
 	width: 50%;
 }
 
+#app-grid .row-widgets .cel.width-5
+{
+	width: 62.5%;
+}
+
+#app-grid .row-widgets .cel.width-6
+{
+	width: 75%;
+}
+
+#app-grid .row-widgets .cel.width-7
+{
+	width: 85.5%;
+}
+
+#app-grid .row-widgets .cel.width-8
+{
+	width: 100%;
+}
+
 #app-grid .cel
 {
 	color: white;

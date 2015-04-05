@@ -105,9 +105,15 @@
 .gridEdit .wid-grid .wid-infos
 {
 	text-align: center;
-	height: 50%;
+	height: 100%;
 	width: 100%;
-	padding-top: 25%;
+	padding-top: 25px;
+}
+
+.gridEdit .wid-grid .wid-infos .arrowSep
+{
+	display: inline-block;
+	width: 25%;
 }
 
 .wid-avaliable

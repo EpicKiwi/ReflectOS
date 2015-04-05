@@ -132,4 +132,45 @@ angular.module('adminApp', []).config(function($interpolateProvider){
 		}
 	}
 
+	$scope.resizeLeft = function(row,cel)
+	{
+		if($scope.activeProfil != null)
+		{
+			$scope.profils[$scope.activeProfil].widgets[row][cel].width += 1;
+			if($scope.profils[$scope.activeProfil].widgets[row][cel-1].width > 1)
+			{
+				$scope.profils[$scope.activeProfil].widgets[row][cel-1].width -= 1;
+			}
+			else
+			{
+				$scope.profils[$scope.activeProfil].widgets[row].splice(cel-1,1);
+			}
+		}
+	}
+
+	$scope.resizeRight = function(row,cel)
+	{
+		if($scope.activeProfil != null)
+		{
+			$scope.profils[$scope.activeProfil].widgets[row][cel].width += 1;
+			if($scope.profils[$scope.activeProfil].widgets[row][cel+1].width > 1)
+			{
+				$scope.profils[$scope.activeProfil].widgets[row][cel+1].width -= 1;
+			}
+			else
+			{
+				$scope.profils[$scope.activeProfil].widgets[row].splice(cel+1,1);
+			}
+		}
+	}
+
+	$scope.addRight = function(row,cel)
+	{
+		if($scope.activeProfil != null)
+		{
+			$scope.profils[$scope.activeProfil].widgets[row].push({width: 1, widget: null});
+			$scope.profils[$scope.activeProfil].widgets[row][cel].width -= 1;
+		}
+	}
+
 });
