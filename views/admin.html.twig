@@ -7,7 +7,7 @@
 		<link href="/static/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 		<link href="/static/admin/global.css" rel="stylesheet"/>
 	</head>
-	<body ng-app="adminApp" ng-controller="mainController" ng-init='profils = {{profils|json_encode()}};protoProfil = {{defaultProfil|json_encode()}};widgetsAvaliable={{widgetsAvaliable|json_encode()}}'>
+	<body ng-app="adminApp" ng-controller="mainController" ng-init='profils = {{profils|json_encode()}};protoProfil = {{defaultProfil|json_encode()}};widgetsAvaliable={{widgetsAvaliable|json_encode()}};backAppsAvaliable={{backAppsAvaliable|json_encode()}}'>
 		<!--NavBar -->
 		<nav class="navbar navbar-inverse">
 	      <div class="container">
@@ -72,11 +72,24 @@
 						</div>
 					</div>
 				</div>
+				<div class="row backAppsEdit">
+					<div class="col-md-6 backAppsAvaliable">						
+						<div class="wid-avaliable" ng-click="addBackApp(backAppAvaliable.id)" ng-repeat="backAppAvaliable in backAppsAvaliable | filter: isBackAppDisabled track by $index">
+							<h4>{[backAppAvaliable.name]}</h4>
+							<p>{[backAppAvaliable.description]}</p>
+						</div>
+					</div>
+					<div class="col-md-6 backAppsEnabled">						
+						<div class="wid-avaliable" ng-click="removeBackApp(backAppEnabled)" ng-repeat="backAppEnabled in profil.backApps track by $index">
+							<h4>{[backAppEnabled]}</h4>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>	
 		<div class="alert alert-warning" ng-show="activeProfil == null && send == false"><strong>Aucun profil séléctionné </strong>: Commencez par séléctionner un profil à éditer</div>	
-		<button type="button" class="btn btn-success" ng-click="sendChanges()">Valider</button>
 		<div class="alert alert-success" ng-show="send == true"><strong>Ok </strong>: Les modifications on été transfèrés au serveur</div>
+		<button type="button" class="btn btn-success" ng-click="sendChanges()">Valider</button>
 		</div>
 
 		<!-- Jquery -->

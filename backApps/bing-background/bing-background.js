@@ -6,7 +6,7 @@ var bingBackground = Object.create(BackApp);
 
 bingBackground.id = "bing-background";
 bingBackground.name = "Bing background";
-bingBackground.description = "Cette BackApp permet de mettre à jour l'arriere plan pour afficher l'image du jour Bing";
+bingBackground.description = "Cette BackApp permet de mettre à jour l arriere plan pour afficher l image du jour Bing";
 bingBackground.apiUrl = "http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=fr-FR"
 
 bingBackground.onLoad = function(){

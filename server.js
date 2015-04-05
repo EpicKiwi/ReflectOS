@@ -46,12 +46,12 @@ app.get("/",function(request,response){
 	}
 	else
 	{
-		response.render("admin.html.twig",{profils:profils,defaultProfil:Profil,widgetsAvaliable: appsManager.getWidgetsAvaliable()});
+		response.render("admin.html.twig",{profils:profils,defaultProfil:Profil,widgetsAvaliable: appsManager.getWidgetsAvaliable(),backAppsAvaliable: appsManager.getBackAppsAvaliable()});
 	}
 });
 
 app.get("/admin",function(request,response){
-		response.render("admin.html.twig",{profils:profils,defaultProfil:Profil,widgetsAvaliable: appsManager.getWidgetsAvaliable()});
+		response.render("admin.html.twig",{profils:profils,defaultProfil:Profil,widgetsAvaliable: appsManager.getWidgetsAvaliable(),backAppsAvaliable: appsManager.getBackAppsAvaliable()});
 });
 
 app.get("/display",function(request,response){

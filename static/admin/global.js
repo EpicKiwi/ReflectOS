@@ -62,4 +62,30 @@ angular.module('adminApp', []).config(function($interpolateProvider){
 		$scope.send = true;
 		$scope.activeProfil = null;
 	}
+
+	$scope.isBackAppDisabled = function(value,index)
+	{		
+		for(var i = 0; i<$scope.profils[$scope.activeProfil].backApps.length; i++)
+		{
+			if($scope.profils[$scope.activeProfil].backApps[i] == value.id)
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	$scope.addBackApp = function(backAppId)
+	{
+		$scope.profils[$scope.activeProfil].backApps.push(backAppId);
+	}
+
+
+	$scope.removeBackApp = function(backAppId)
+	{
+		var index = $scope.profils[$scope.activeProfil].backApps.indexOf(backAppId);
+		$scope.profils[$scope.activeProfil].backApps.splice(index,1);
+	}
+
 });

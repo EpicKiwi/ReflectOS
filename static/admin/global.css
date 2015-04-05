@@ -105,23 +105,31 @@
 	padding-top: 25%;
 }
 
-.gridEdit .wid-avaliable
+.wid-avaliable
 {
-	width : 100%;
+	width : 90%;
 	border: solid lightgrey 1px;
 	padding: 5%;
 	margin-top: 10px;
+	margin-left: 5%;
+	margin-right: 5%;
 	margin-bottom: 10px;
 	transition: 0.5s all;
 }
 
 .gridEdit .wid-avaliable.selected
 {
-	border: solid #00b6ff 1px;
-	box-shadow: #00b6ff 0 0 5px;
+	border: solid #9ACFEA 1px;
+	box-shadow: #BADFF0 0 0 5px;
 }
 
 .profilEditorContainer
 {
 	margin-bottom: 20px;
+}
+
+.backAppsEnabled .wid-avaliable
+{
+	border-color: #4EA64E;
+	box-shadow: #4EA64E 0 0 5px;
 }
