@@ -9,16 +9,16 @@ var appsManager = require("./lib/appsManager");
 
 var profils = [];
 var newProfil = Object.create(Profil);
-newProfil.id = "default";
-newProfil.name = "Default";
+newProfil.id = "basic";
+newProfil.name = "Basic";
 newProfil.default = true;
 newProfil.widgets = [
 						[
-						{width: 2,widget: "meteo"},
+						{width: 2,widget: null},
 						{width: 1,widget: null},
 						{width: 2,widget: "horloge"},
 						{width: 1,widget: null},
-						{width: 2,widget: "news"}
+						{width: 2,widget: null}
 						],
 						[
 						{width: 4,widget: null},
@@ -26,22 +26,6 @@ newProfil.widgets = [
 						],
 					];
 newProfil.backApps = ["bing-background"];
-profils.push(newProfil);
-var newProfil = Object.create(Profil);
-newProfil.id = "clock";
-newProfil.name = "Clock";
-newProfil.default = false;
-newProfil.widgets = [
-						[
-						{width: 3,widget: null},
-						{width: 2,widget: "horloge"},
-						{width: 3,widget: null}
-						],
-						[
-						{width: 4,widget: null},
-						{width: 4,widget: null}
-						],
-					];
 profils.push(newProfil);
 
 app.use("/static",express.static(__dirname+"/static"));
@@ -150,6 +134,10 @@ io.on('connection',function(socket){
 				console.warn(socketIp+" : erreur de chargement de la BackApp "+err.code);
 			}
 		});
+	});
+
+	socket.on("refreshProfils",function(data){
+		profils = data;
 	});
 
 	socket.on("disconnect",function(){

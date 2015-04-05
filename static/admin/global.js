@@ -3,8 +3,10 @@ angular.module('adminApp', []).config(function($interpolateProvider){
 })
 
 .controller("mainController",function($scope){
+	$scope.socket = new io();
 	$scope.activeProfil = null;
 	$scope.selectedWidgetAvaliable = null;
+	$scope.send = false;
 
 	$scope.profilSelect = function(id)
 	{
@@ -52,5 +54,12 @@ angular.module('adminApp', []).config(function($interpolateProvider){
 		}
 
 		$scope.profils[id].default = true;
+	}
+
+	$scope.sendChanges = function()
+	{
+		$scope.socket.emit("refreshProfils",$scope.profils);
+		$scope.send = true;
+		$scope.activeProfil = null;
 	}
 });
