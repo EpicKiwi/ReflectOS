@@ -88,4 +88,26 @@ angular.module('adminApp', []).config(function($interpolateProvider){
 		$scope.profils[$scope.activeProfil].backApps.splice(index,1);
 	}
 
+	$scope.getBackAppInfos = function(backAppId)
+	{
+		for(var i = 0; i<$scope.backAppsAvaliable.length; i++)
+		{
+			if($scope.backAppsAvaliable[i].id == backAppId)
+			{
+				return $scope.backAppsAvaliable[i];
+			}
+		}
+	}
+
+	$scope.getWidgetInfos = function(widgetId)
+	{
+		for(var i = 0; i<$scope.widgetsAvaliable.length; i++)
+		{
+			if($scope.widgetsAvaliable[i].id == widgetId)
+			{
+				return $scope.widgetsAvaliable[i];
+			}
+		}
+	}
+
 });

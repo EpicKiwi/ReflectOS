@@ -58,7 +58,7 @@
 							<div class="wid-row" ng-repeat="row in profil.widgets track by $index">
 								<div class="wid-cel width-{[cel.width]}" ng-click="setWidget(profil.widgets.indexOf(row),row.indexOf(cel))" ng-repeat="cel in row">
 									<div class="wid-infos">
-										{[cel.widget]}<br/><br/>
+										{[getWidgetInfos(cel.widget).name]}<br/><br/>
 										<button ng-hide="cel.widget == null" type="button" class="btn btn-xs btn-danger" ng-click="deleteWidget(profil.widgets.indexOf(row),row.indexOf(cel))">Supprimmer</button>
 									</div>
 								</div>
@@ -81,7 +81,8 @@
 					</div>
 					<div class="col-md-6 backAppsEnabled">						
 						<div class="wid-avaliable" ng-click="removeBackApp(backAppEnabled)" ng-repeat="backAppEnabled in profil.backApps track by $index">
-							<h4>{[backAppEnabled]}</h4>
+							<h4>{[getBackAppInfos(backAppEnabled).name]}</h4>
+							<p>{[getBackAppInfos(backAppEnabled).description]}</p>
 						</div>
 					</div>
 				</div>
