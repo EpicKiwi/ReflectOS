@@ -9,7 +9,7 @@
 	</head>
 	<body ng-app="adminApp" ng-controller="mainController" ng-init='profils = {{profils|json_encode()}};protoProfil = {{defaultProfil|json_encode()}};widgetsAvaliable={{widgetsAvaliable|json_encode()}};backAppsAvaliable={{backAppsAvaliable|json_encode()}}'>
 		<!--NavBar -->
-		<nav class="navbar navbar-inverse">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
 	      <div class="container">
 	        <div class="navbar-header">
 	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -27,7 +27,7 @@
 	      </div>
 	    </nav>
 
-	    <div class="container">
+	    <div class="container first-container">
 
 		    <div class="alert alert-info">
 		    	<p><strong>Bienvenue</strong> dans l'administration de votre périphérique ReflectOS. Ici vous pouvez administrer les widgets et l'organisation de votre ecran d'acceuil</p>
@@ -70,14 +70,14 @@
 						</div>
 
 						<div class="row backAppsEdit">
-							<div class="col-md-6 backAppsAvaliable">						
-								<div class="wid-avaliable" ng-click="addBackApp(backAppAvaliable.id)" ng-repeat="backAppAvaliable in backAppsAvaliable | filter: isBackAppDisabled track by $index">
+							<div class="col-md-6 backApps backAppsAvaliable">					
+								<div class="wid-avaliable" ng-click="addBackApp(backAppAvaliable.id)" ng-repeat="backAppAvaliable in backAppsAvaliable | filter: isBackAppDisabled">
 									<h4>{[backAppAvaliable.name]}</h4>
 									<p>{[backAppAvaliable.description]}</p>
 								</div>
 							</div>
-							<div class="col-md-6 backAppsEnabled">						
-								<div class="wid-avaliable" ng-click="removeBackApp(backAppEnabled)" ng-repeat="backAppEnabled in profil.backApps track by $index">
+							<div class="col-md-6 backApps backAppsEnabled">			
+								<div class="wid-avaliable" ng-click="removeBackApp(backAppEnabled)" ng-repeat="backAppEnabled in profil.backApps">
 									<h4>{[getBackAppInfos(backAppEnabled).name]}</h4>
 									<p>{[getBackAppInfos(backAppEnabled).description]}</p>
 								</div>
@@ -86,8 +86,7 @@
 					</div>
 
 					<div class="col-md-4">
-						<input type="text" placeholder="Rechercher" ng-model="widAvaQuery" class="form-control"/>
-						<div class="wid-avaliable widAva-{[widgetsAvaliable.indexOf(widgetAvaliable)]}" ng-class="{selected: selectedWidgetAvaliable == widgetsAvaliable.indexOf(widgetAvaliable)}" ng-repeat="widgetAvaliable in widgetsAvaliable | filter: widAvaQuery track by $index" ng-click="selectWidgetAvaliable(widgetsAvaliable.indexOf(widgetAvaliable))">
+						<div class="wid-avaliable widAva-{[widgetsAvaliable.indexOf(widgetAvaliable)]}" ng-class="{selected: selectedWidgetAvaliable == widgetsAvaliable.indexOf(widgetAvaliable)}" ng-repeat="widgetAvaliable in widgetsAvaliable | filter: isWidgetDisabled" ng-click="selectWidgetAvaliable(widgetsAvaliable.indexOf(widgetAvaliable))">
 							<h4>{[widgetAvaliable.name]}</h4>
 							<p>{[widgetAvaliable.description]}</p>
 						</div>

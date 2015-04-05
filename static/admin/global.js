@@ -63,17 +63,39 @@ angular.module('adminApp', []).config(function($interpolateProvider){
 		$scope.activeProfil = null;
 	}
 
+	$scope.isWidgetDisabled = function(value,index)
+	{		
+		if($scope.activeProfil != null)
+		{
+			for(var i = 0; i<$scope.profils[$scope.activeProfil].widgets.length; i++)
+			{
+				for(var j = 0; j<$scope.profils[$scope.activeProfil].widgets[i].length; j++)
+				{
+					if($scope.profils[$scope.activeProfil].widgets[i][j].widget != null && $scope.profils[$scope.activeProfil].widgets[i][j].widget == value.id)
+					{
+						return false;
+					}
+				}
+			}
+
+			return true;
+		}
+	}
+
 	$scope.isBackAppDisabled = function(value,index)
 	{		
-		for(var i = 0; i<$scope.profils[$scope.activeProfil].backApps.length; i++)
+		if($scope.activeProfil != null)
 		{
-			if($scope.profils[$scope.activeProfil].backApps[i] == value.id)
+			for(var i = 0; i<$scope.profils[$scope.activeProfil].backApps.length; i++)
 			{
-				return false;
+				if($scope.profils[$scope.activeProfil].backApps[i] == value.id)
+				{
+					return false;
+				}
 			}
-		}
 
-		return true;
+			return true;
+		}
 	}
 
 	$scope.addBackApp = function(backAppId)
