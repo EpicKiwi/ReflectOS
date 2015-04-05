@@ -4,6 +4,7 @@ var http = require('http');
 var widgetInfos = {
 	id: "horloge",
 	name: "Horloge",
+	description: "Ce widget permet d afficher l heure et la date actuelle.",
 	optimalSize: 2,
 }
 

@@ -4,6 +4,7 @@ var http = require('http');
 var widgetInfos = {
 	id: "meteo",
 	name: "Météo",
+	description: "Ce widget affiche les prévisions météo sur 3 jours environ. Ces information son issu du site OpenWeatherMap.",
 	optimalSize: 2,
 	city: "le%20havre",
 	showNight: false

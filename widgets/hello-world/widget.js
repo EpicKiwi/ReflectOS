@@ -1,7 +1,8 @@
 var widgetInfos = {
 	id: "hello-world",
 	name: "Hello world",
-	optimalSize: 2
+	description: "Ce widget ne sert a rien, il permet seulement d afficher un texte avec le titre hello world.",
+	optimalSize: 2,
 }
 
 exports.load = function(callback){

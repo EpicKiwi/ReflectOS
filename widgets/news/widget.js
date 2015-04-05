@@ -4,6 +4,7 @@ var http = require('http');
 var widgetInfos = {
 	id: "news",
 	name: "News",
+	description: "Ce widget permet d afficher les derniers articles publiés sur le web. Ces informations sont issues du site FeedZilla.",
 	optimalSize: 2,
 	feedAddress: "http://api.feedzilla.com/v1/categories/419/articles.json?order=date"
 }
