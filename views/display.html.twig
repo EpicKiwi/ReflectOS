@@ -27,17 +27,20 @@
 		<script type="text/javascript" src="/static/jquery-2.1.3.min.js"></script>
 		<script type="text/javascript" src="/static/rejexFilter.js"></script>
 		<script>
+		var profil = JSON.parse('{{profil|json_encode()}}');
 			var socket = new io();
 			var widgets = [];
 			var backApps = [];
-
-			//A changer !!!!
-			socket.emit("getBackApp","bing-background");
 
 			$(".cel:regex(class,wid\-(.*))").each(function(index) {
 				var widgetId = $(this).attr("class").replace(/.*wid\-(.*)/i,"$1");
 				socket.emit("getWidget",widgetId);
 			});
+
+			for(var i = 0; i<profil.backApps.length; i++)
+			{
+				socket.emit("getBackApp",profil.backApps[i]);
+			}
 
 			socket.on("openWidget",function(data){
 				var widgetContainer = $(".wid-"+data.infos.id);
