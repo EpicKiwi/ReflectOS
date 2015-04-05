@@ -94,3 +94,4 @@ function formatDate(date)
 
 exports.update = update;
 exports.load = load;
+exports.infos = widgetInfos;

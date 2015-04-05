@@ -32,13 +32,13 @@ bingBackground.update = function(callback){
 
 			var updateDate = new Date();
 			updateDate.setHours(0);
-			updateDate.setMinutes(30);
+			updateDate.setMinutes(0);
 			updateDate.setSeconds(0);
 			updateDate.setDate(updateDate.getDate()+1);
 			schedule.scheduleJob(updateDate,function(){
 				bingBackground.update(callback);
 			});
-			console.log("Ecran mis a jour ... prochaine mise a jour le "+updateDate.getDate()+"/"+(updateDate.getMonth()+1)+" a minuit et 30 minutes");
+			console.log("Ecran mis a jour ... prochaine mise a jour le "+updateDate.getDate()+"/"+(updateDate.getMonth()+1)+" a minuit");
 		});
 	})
 	.on("error",function(){

@@ -215,3 +215,4 @@ function reportUpdate(time, callback)
 
 exports.load = load;
 exports.update = update;
+exports.infos = widgetInfos;

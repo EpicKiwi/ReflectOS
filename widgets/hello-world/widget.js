@@ -14,3 +14,5 @@ exports.load = function(callback){
 	
 	callback(result);
 }
+
+exports.infos = widgetInfos;

@@ -11,41 +11,16 @@
 		</style>
 	</head>
 	<body>
-		<div id="display">
+		<div id="display" class="profilId-{{profil.id}}">
 			<div id="app-grid">
+
+				{% for row in profil.widgets %}
 				<div class="row row-widgets">
-					<div class="cel width-2 wid-meteo">
-
-					</div><div class="cel">
-						
-					</div><div class="cel width-2 wid-horloge">
-						
-					</div><div class="cel">
-
-					</div><div class="cel width-2 wid-news">
-						
-					</div>
+					{% for cel in row %}<div class="cel width-{{cel.width}} {% if cel.widget != null %}wid-{{cel.widget}}{% endif %}">
+					</div>{% endfor %}
 				</div>
-				<div class="row row-widgets">
-					<div class="cel">
+				{% endfor %}
 
-					</div><div class="cel">
-
-					</div><div class="cel">
-
-					</div><div class="cel">
-
-					</div><div class="cel">
-
-					</div><div class="cel">
-
-					</div><div class="cel">
-
-					</div><div class="cel">
-
-					</div>
-				</div>
-			</div>
 		</div>
 		<!-- Script Zone -->
 		<script src="/socket.io/socket.io.js"></script>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ReflectOS panel d'administration</title>
+		<meta charset="UTF-8"/>
+		<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/static/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="/static/admin/global.css" rel="stylesheet"/>
+	</head>
+	<body ng-app="adminApp" ng-controller="mainController" ng-init='profils = {{profils|json_encode()}};protoProfil = {{defaultProfil|json_encode()}};widgetsAvaliable={{widgetsAvaliable|json_encode()}}'>
+		<!--NavBar -->
+		<nav class="navbar navbar-inverse">
+	      <div class="container">
+	        <div class="navbar-header">
+	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	            <span class="sr-only">Toggle navigation</span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+	          <a class="navbar-brand" href="#">ReflectOS</a>
+	        </div>
+	        <div id="navbar" class="collapse navbar-collapse">
+	          <ul class="nav navbar-nav">
+	          </ul>
+	        </div>
+	      </div>
+	    </nav>
+
+	    <div class="container">
+
+		    <div class="alert alert-info">
+		    	<p><strong>Bienvenue</strong> dans l'administration de votre périphérique ReflectOS. Ici vous pouvez administrer les widgets et l'organisation de votre ecran d'acceuil</p>
+		    </div>
+
+		<div class="profilEditorContainer">
+			<ul class="nav nav-tabs">
+				<li ng-repeat="profil in profils track by $index" ng-class="{active: activeProfil == $index}">
+					<a href="#" id="profil-{[$index]}" ng-click="profilSelect($index)">{[profil.name]}</a>
+				</li>
+				<li>
+					<a href="#" id="addProfil" ng-click="addProfil()"><span class="glyphicon glyphicon-plus"></span></a>
+				</li>
+			</ul>
+
+			<div class="profilForm" ng-repeat="profil in profils track by $index" ng-show="activeProfil == $index">
+				<div class="row">
+					<div class="col-md-4">
+						<input type="text" placeholder="Nom" ng-model="profil.name" class="form-control"/>
+					</div>
+					<div class="col-md-4">
+						Par defaut <input type="checkbox" ng-disabled="profil.default" ng-model="profil.default" ng-change="setDefault(profils.indexOf(profil))" />
+					</div>
+				</div>
+				<div class="row gridEdit">
+					<div class="col-md-8">
+						<div class="wid-grid">
+							<div class="wid-row" ng-repeat="row in profil.widgets track by $index">
+								<div class="wid-cel width-{[cel.width]}" ng-click="setWidget(profil.widgets.indexOf(row),row.indexOf(cel))" ng-repeat="cel in row">
+									<div class="wid-infos">
+										{[cel.widget]}<br/><br/>
+										<button ng-hide="cel.widget == null" type="button" class="btn btn-xs btn-danger" ng-click="deleteWidget(profil.widgets.indexOf(row),row.indexOf(cel))">Supprimmer</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<input type="text" placeholder="Rechercher" ng-model="widAvaQuery" class="form-control"/>
+						<div class="wid-avaliable widAva-{[widgetsAvaliable.indexOf(widgetAvaliable)]}" ng-class="{selected: selectedWidgetAvaliable == widgetsAvaliable.indexOf(widgetAvaliable)}" ng-repeat="widgetAvaliable in widgetsAvaliable | filter: widAvaQuery track by $index" ng-click="selectWidgetAvaliable(widgetsAvaliable.indexOf(widgetAvaliable))">
+							<h4>{[widgetAvaliable.name]}</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="alert alert-warning" ng-show="activeProfil == null"><strong>Aucun profil séléctionné </strong>: Commencez par séléctionner un profil à éditer</div>
+
+		</div>
+
+		<!-- Jquery -->
+		<script src="/static/Jquery-2.1.3.min.js"></script>
+		<!-- Twitter Bootstrap script -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+		<script src="/static/admin/global.js"></script>
+		<!-- AngularJS -->
+		<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+	</body>
+</html>

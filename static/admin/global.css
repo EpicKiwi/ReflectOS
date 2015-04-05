@@ -1,0 +1,127 @@
+.jumbotron
+{
+	margin-bottom: 20px;
+}
+
+.profilForm, .gridEdit
+{
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.profilForm
+{
+	border-bottom: solid lightgrey 1px;
+}
+
+.gridEdit .wid-grid
+{
+	width: 100%;
+	height: 40vh;
+	border-radius: 10px;
+	box-shadow: grey 0 0 5px;
+}
+
+.gridEdit .wid-grid .wid-row
+{
+	width: 100%;
+	height: 50%;
+}
+
+.gridEdit .wid-grid .wid-cel
+{
+	border: lightgrey 1px solid;
+	display: inline-block;
+	vertical-align: top;
+	height: 100%;
+}
+
+.gridEdit .wid-grid .wid-cel.width-1
+{
+	width: 12.5%;
+}
+
+.gridEdit .wid-grid .wid-cel.width-2
+{
+	width: 25%;
+}
+
+.gridEdit .wid-grid .wid-cel.width-3
+{
+	width: 37.5%;
+}
+
+.gridEdit .wid-grid .wid-cel.width-4
+{
+	width: 50%;
+}
+
+.gridEdit .wid-grid .wid-cel.width-5
+{
+	width: 62.5%;
+}
+
+.gridEdit .wid-grid .wid-cel.width-6
+{
+	width: 75%;
+}
+
+.gridEdit .wid-grid .wid-cel.width-7
+{
+	width: 87.5%;
+}
+
+.gridEdit .wid-grid .wid-cel.width-8
+{
+	width: 100%;
+}
+
+.gridEdit .wid-grid .wid-row:first-child .wid-cel:first-child
+{
+	border-radius: 10px 0 0 0;
+}
+
+.gridEdit .wid-grid .wid-row:first-child .wid-cel:last-child
+{
+	border-radius: 0 10px 0 0;
+}
+
+.gridEdit .wid-grid .wid-row:last-child .wid-cel:first-child
+{
+	border-radius: 0 0 0 10px;
+}
+
+.gridEdit .wid-grid .wid-row:last-child .wid-cel:last-child
+{
+	border-radius: 0 0 10px 0;
+}
+
+.gridEdit .wid-grid .wid-infos
+{
+	text-align: center;
+	height: 50%;
+	width: 100%;
+	padding-top: 25%;
+}
+
+.gridEdit .wid-avaliable
+{
+	width : 100%;
+	border: solid lightgrey 1px;
+	padding: 5%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	transition: 0.5s all;
+}
+
+.gridEdit .wid-avaliable.selected
+{
+	border: solid #00b6ff 1px;
+	box-shadow: #00b6ff 0 0 5px;
+}
+
+.profilEditorContainer
+{
+	margin-bottom: 20px;
+}
