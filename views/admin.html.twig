@@ -90,9 +90,24 @@
 								</div>
 							</div>
 							<div class="col-md-6 backApps backAppsEnabled">			
-								<div class="wid-avaliable" ng-click="removeBackApp(backAppEnabled)" ng-repeat="backAppEnabled in profil.backApps">
-									<h4>{[getBackAppInfos(backAppEnabled).name]}</h4>
-									<p>{[getBackAppInfos(backAppEnabled).description]}</p>
+								<div ng-controller="BackAppController" class="wid-avaliable" ng-init="backApp = getBackAppInfos(backAppEnabled)" ng-repeat="backAppEnabled in profil.backApps">
+									<h4>{[backApp.name]}</h4>
+									<p>{[backApp.description]}</p>
+									<div class="row">
+										<div class="col-md-6">
+											<button type="button" class="btn btn-primary" ng-hide="configureTabOpen" ng-click="configureTabOpen = true">Configurer</button>
+											<button type="button" ng-click="configure()" ng-show="configureTabOpen" class="btn btn-success">Valider</button>
+										</div>
+										<div class="col-md-6">
+											<button type="button" class="btn btn-danger" ng-click="removeBackApp(backAppEnabled)">Supprimmer</button>
+										</div>
+									</div>
+									<div class="parametersForm" ng-show="configureTabOpen">
+										<div class="input" ng-repeat="parameter in backApp.parameters">
+											<label>{[parameter.label]} :</label>
+											<input type="parameter.type" class="form-control" ng-model="parameter.content"/>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>

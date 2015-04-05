@@ -106,6 +106,7 @@ io.on('connection',function(socket){
 
 	socket.on("getBackApp",function(appId){
 		fs.readdir("./backApps/"+appId,function(err,files){
+			console.log("Demmande de la backApp : "+appId);
 			if(err == null)
 			{
 				var backApp = require("./backApps/"+appId+"/"+appId+".js");
@@ -139,6 +140,12 @@ io.on('connection',function(socket){
 	socket.on("refreshProfils",function(data){
 		profils = data;
 		io.emit("forceRefresh");
+	});
+
+	socket.on("configureBackApp",function(data){
+		appsManager.getBackApp(data.id,function(app){
+			app.parameters = data.parameters;
+		});
 	});
 
 	socket.on("disconnect",function(){

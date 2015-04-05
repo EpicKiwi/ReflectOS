@@ -149,3 +149,13 @@
 {
 	text-align: center;
 }
+
+.parametersForm
+{
+	padding-top: 10px;
+}
+
+.parametersForm .input
+{
+	padding-bottom: 10px;
+}

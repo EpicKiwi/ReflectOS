@@ -172,4 +172,15 @@ angular.module('adminApp', []).config(function($interpolateProvider){
 		}
 	}
 
+})
+.controller("BackAppController",function($scope){
+	$scope.configureTabOpen = false;
+
+	$scope.configure = function()
+	{
+		console.log($scope.backApp);
+		$scope.socket.emit("configureBackApp",{id: $scope.backApp.id,parameters: $scope.backApp.parameters});
+		$scope.configureTabOpen = false;
+	}
+
 });
