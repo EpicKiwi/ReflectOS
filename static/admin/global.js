@@ -60,7 +60,6 @@ angular.module('adminApp', []).config(function($interpolateProvider){
 	{
 		$scope.socket.emit("refreshProfils",$scope.profils);
 		$scope.send = true;
-		$scope.activeProfil = null;
 	}
 
 	$scope.isWidgetDisabled = function(value,index)
