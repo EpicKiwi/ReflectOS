@@ -9,14 +9,14 @@ var appsManager = require("./lib/appsManager");
 
 var profils = [];
 var newProfil = Object.create(Profil);
-newProfil.id = "basic";
-newProfil.name = "Basic";
+newProfil.id = "bienvenue";
+newProfil.name = "Bienvenue";
 newProfil.default = true;
 newProfil.widgets = [
 						[
 						{width: 2,widget: null},
 						{width: 1,widget: null},
-						{width: 2,widget: "horloge"},
+						{width: 2,widget: "bienvenue"},
 						{width: 1,widget: null},
 						{width: 2,widget: null}
 						],
@@ -25,7 +25,7 @@ newProfil.widgets = [
 						{width: 4,widget: null}
 						],
 					];
-newProfil.backApps = ["bing-background"];
+newProfil.backApps = [];
 profils.push(newProfil);
 
 app.use("/static",express.static(__dirname+"/static"));
