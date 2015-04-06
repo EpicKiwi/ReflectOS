@@ -193,4 +193,14 @@ angular.module('adminApp', []).config(function($interpolateProvider){
 		$scope.configureTabOpen = false;
 	}
 
+})
+.controller("widgetController",function($scope){
+	$scope.configureTabOpen = false;
+
+	$scope.configure = function()
+	{
+		console.log($scope.widget);
+		$scope.socket.emit("configureWidget",{id: $scope.widget.id,parameters: $scope.widget.parameters});
+		$scope.configureTabOpen = false;
+	}
 });

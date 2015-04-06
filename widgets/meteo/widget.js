@@ -11,7 +11,8 @@ meteo.html = fs.readFileSync(__dirname+"/default.html","UTF-8");
 meteo.css = fs.readFileSync(__dirname+"/style.css","UTF-8");
 meteo.optimalSize = 2;
 meteo.parameters = {
-	city: {type:"text",lable:"Ville de prévisions",content:"le%20havre"},
+	city: {type:"text",label:"Ville de prévisions",content:"le%20havre"},
+	showNight: {type:"checkbox",label:"Montrer les prévisions nocturnes",content:false},
 };
 
 meteo.load = function(callback) {

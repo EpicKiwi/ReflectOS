@@ -105,7 +105,7 @@
 									<div class="parametersForm" ng-show="configureTabOpen">
 										<div class="input" ng-repeat="parameter in backApp.parameters">
 											<label>{[parameter.label]} :</label>
-											<input type="parameter.type" class="form-control" ng-model="parameter.content"/>
+											<input type="{[parameter.type]}" class="form-control" ng-model="parameter.content"/>
 										</div>
 									</div>
 								</div>
@@ -114,9 +114,19 @@
 					</div>
 
 					<div class="col-md-4">
-						<div class="wid-avaliable widAva-{[widgetsAvaliable.indexOf(widgetAvaliable)]}" ng-class="{selected: selectedWidgetAvaliable == widgetsAvaliable.indexOf(widgetAvaliable)}" ng-repeat="widgetAvaliable in widgetsAvaliable | filter: isWidgetDisabled" ng-click="selectWidgetAvaliable(widgetsAvaliable.indexOf(widgetAvaliable))">
+						<div ng-controller="widgetController" class="wid-avaliable widAva-{[widgetsAvaliable.indexOf(widgetAvaliable)]}" ng-class="{selected: selectedWidgetAvaliable == widgetsAvaliable.indexOf(widgetAvaliable)}" ng-init="widget=widgetAvaliable" ng-repeat="widgetAvaliable in widgetsAvaliable | filter: isWidgetDisabled" ng-click="selectWidgetAvaliable(widgetsAvaliable.indexOf(widgetAvaliable))">
 							<h4>{[widgetAvaliable.name]}</h4>
 							<p>{[widgetAvaliable.description]}</p>
+							<div class="configureForm" ng-hide="widgetAvaliable.parameters == null">
+								<button type="button" class="btn btn-primary" ng-hide="configureTabOpen" ng-click="configureTabOpen = true">Configurer</button>
+								<button type="button" ng-click="configure()" ng-show="configureTabOpen" class="btn btn-success">Valider</button>
+								<div class="parametersForm" ng-show="configureTabOpen">
+									<div class="input" ng-repeat="parameter in widgetAvaliable.parameters">
+										<label>{[parameter.label]} :</label>
+										<input type="{[parameter.type]}" class="form-control" ng-model="parameter.content"/>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

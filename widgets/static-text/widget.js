@@ -9,7 +9,7 @@ staticText.css = ".wid-hello-world{box-shadow: none !important;}";
 staticText.optimalSize = 2;
 staticText.parameters = {
 	title: {type:"text",label:"Le titre",content: "A configurer"},
-	text: {type:"text",label:"Le contenu",content: "Veuillez configurer ce widget dans les parametres de l'administration"},
+	text: {type:"text",label:"Le contenu",content: "Veuillez configurer ce widget dans les parametres de l administration"},
 };
 
 staticText.load = function(callback) {

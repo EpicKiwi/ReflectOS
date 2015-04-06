@@ -165,6 +165,13 @@ io.on('connection',function(socket){
 		});
 	});
 
+	socket.on("configureWidget",function(data){
+		console.log("EXEC");
+		appsManager.getWidget(data.id,function(app){
+			app.parameters = data.parameters;
+		});
+	});
+
 	socket.on("disconnect",function(){
 		console.log(socketIp+" : Déconnexion socket");
 	});
