@@ -172,6 +172,16 @@ angular.module('adminApp', []).config(function($interpolateProvider){
 		}
 	}
 
+	$scope.addLeft = function(row,cel)
+	{
+		if($scope.activeProfil != null)
+		{
+			$scope.profils[$scope.activeProfil].widgets[row].unshift({width: 1, widget: null});
+			$scope.profils[$scope.activeProfil].widgets[row][cel+1].width -= 1;
+		}
+	}
+
+
 })
 .controller("BackAppController",function($scope){
 	$scope.configureTabOpen = false;

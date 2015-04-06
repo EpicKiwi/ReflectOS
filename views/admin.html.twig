@@ -63,7 +63,7 @@
 
 												<button type="button" ng-hide="row.indexOf(cel) == 0" ng-click="resizeLeft(profil.widgets.indexOf(row),row.indexOf(cel))" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-chevron-left"></span></button>
 
-												<button type="button" ng-show="row.indexOf(cel) == 0 && cel.width > 1" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+												<button type="button" ng-click="addLeft(profil.widgets.indexOf(row),row.indexOf(cel))" ng-show="row.indexOf(cel) == 0 && cel.width > 1" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></button>
 
 												<div class="arrowSep"></div>
 
