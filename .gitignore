@@ -1,2 +1,5 @@
 #Non commit des dépendances
 node_modules/*
+
+#Non commit des profils
+profils.json
