@@ -14,7 +14,7 @@
 	        <div class="navbar-header">
 	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 	            <span class="sr-only">Toggle navigation</span>
-	            <span class="icon-bar"></span>
+	            <span class="icon-bar" ></span>
 	            <span class="icon-bar"></span>
 	            <span class="icon-bar"></span>
 	          </button>
@@ -22,6 +22,7 @@
 	        </div>
 	        <div id="navbar" class="collapse navbar-collapse">
 	          <ul class="nav navbar-nav">
+	          	<li ><a href="#" ng-click="sendChanges()" >Enregistrer les modifications</a></li>
 	          </ul>
 	        </div>
 	      </div>
@@ -29,9 +30,8 @@
 
 	    <div class="container first-container">
 
-		    <div class="alert alert-info">
-		    	<p><strong>Bienvenue</strong> dans l'administration de votre périphérique ReflectOS. Ici vous pouvez administrer les widgets et l'organisation de votre ecran d'acceuil</p>
-		    </div>
+		    <div class="alert alert-info" ng-hide="send == true"><strong>Bienvenue</strong> dans l'administration de votre périphérique ReflectOS. Ici vous pouvez administrer les widgets et l'organisation de votre ecran d'acceuil</div>
+			<div class="alert alert-success" ng-show="send == true"><strong>Ok </strong>: Les modifications on été transfèrés au serveur</div>
 
 		<div class="profilEditorContainer">
 			<ul class="nav nav-tabs">
@@ -123,8 +123,6 @@
 			</div>
 		</div>	
 		<div class="alert alert-warning" ng-show="activeProfil == null && send == false"><strong>Aucun profil séléctionné </strong>: Commencez par séléctionner un profil à éditer</div>	
-		<div class="alert alert-success" ng-show="send == true"><strong>Ok </strong>: Les modifications on été transfèrés au serveur</div>
-		<button type="button" class="btn btn-success" ng-click="sendChanges()">Valider</button>
 		</div>
 
 		<!-- Jquery -->
