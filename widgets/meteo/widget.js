@@ -1,37 +1,73 @@
 var fs = require('fs');
 var http = require('http');
 
-var widgetInfos = {
-	id: "meteo",
-	name: "Météo",
-	description: "Ce widget affiche les prévisions météo sur 3 jours environ. Ces information son issu du site OpenWeatherMap.",
-	optimalSize: 2,
-	city: "le%20havre",
-	showNight: false
+var Widget = require(__dirname+"/../../lib/Widget.js");
+var meteo = Object.create(Widget);
+
+meteo.id = "meteo";
+meteo.name = "Météo";
+meteo.description = "Ce widget affiche les prévisions météo sur 3 jours environ. Ces information son issu du site OpenWeatherMap.";
+meteo.html = fs.readFileSync(__dirname+"/default.html","UTF-8");
+meteo.css = fs.readFileSync(__dirname+"/style.css","UTF-8");
+meteo.optimalSize = 2;
+meteo.parameters = {
+	city: {type:"text",lable:"Ville de prévisions",content:"le%20havre"},
+};
+
+meteo.load = function(callback) {
+	var result = meteo.__proto__.load.call(meteo,callback);
 }
 
-var load = function(callback){
-	var result = {
-		infos: widgetInfos,
-		html: fs.readFileSync(__dirname+"/default.html","UTF-8"),
-		css: fs.readFileSync(__dirname+"/style.css","UTF-8"),
-		onLoad: "function(thisApp){"+fs.readFileSync(__dirname+"/onLoad.js","UTF-8")+"}",
-		onUpdate: "function(data){"+fs.readFileSync(__dirname+"/onUpdate.js","UTF-8")+"}"
-	}
+meteo.onLoad = function(){
+	console.log("Widget meteo chargé");
+	socket.emit("updateWidget","meteo");
+};
 
-	callback(result);
-}
+meteo.onUpdate = function(data){
+	$(".wid-meteo .content").html("");
+	$(".wid-meteo .app-title").html(data.cityName);
+	var lastDay = null;
+	for (var i = 0; i < 10; i++) {
+		var date = new Date(data.forecast[i].date);
+		var html = "";
+		html += "<div class='meteo-row";
 
-var update = function(callback){
-	console.log("Mise à jour du widget Météo");
-	var result = {
-		infos : widgetInfos
+		if(i != 0)
+		{
+			html += " reduce";
+		}
+		else
+		{
+			html += " first";
+		}
+
+		if(lastDay != date.getDay())
+		{
+			lastDay = date.getDay();
+			$(".wid-meteo .content .meteo-row:last-child").addClass('last');
+		}
+		
+		html += "'>";
+
+		html +=  	"<div class='meteo-icon'><i class=\"wi wi-"+data.forecast[i].weatherClass+"\"></i></div>"+
+						"<div class='meteo-info'>"+
+							"<span class='meteo-field'>"+data.forecast[i].day+"</span>"+
+							"<span class='meteo-field meteo-hour'>"+date.getHours()+" H </span>"+
+							"<span class='meteo-field'><i class=\"wi wi-thermometer\"></i> "+data.forecast[i].temp+"°C</span>"+
+							"<span class='meteo-field compass'><i class=\"wi wi-wind-default _"+data.forecast[i].windCompass+"-deg\"></i>"+data.forecast[i].windSpeed+" Km/h</span>"+
+						"</div>"+
+					"</div>";
+		$(".wid-meteo .content").append(html);
 	};
+};
+
+meteo.update = function(callback){
+	var result = meteo.__proto__.update.call(meteo);
 
 	var requestOptions = {
 	  hostname: 'api.openweathermap.org',
 	  port: 80,
-	  path: '/data/2.5/forecast?q='+widgetInfos.city
+	  path: '/data/2.5/forecast?q='+meteo.parameters.city.content
 	};
 	http.get(requestOptions,function(res){
 		var response = "";
@@ -72,18 +108,22 @@ var update = function(callback){
 					result.data.forecast.push(oneForecast);
 				}
 				callback(result);
-				reportUpdate(1200000,callback);
+				setTimeout(function(){meteo.update(callback)},1200000);
 			}
 			else
 			{
-				console.warn("Erreur de mise a jour du widget météo, code "+response.cod+". Nouvelle tentative dans 1s");
-				reportUpdate(1000,callback);
+				console.log("La requete a api.openweathermap.org/data/2.5/forecast?q="+meteo.parameters.city.content)
+				console.warn("Erreur de mise a jour du widget météo, code "+response.cod+". Nouvelle tentative dans 10s");
+				setTimeout(function(){meteo.update(callback)},10000);
 			}
 
 
 		});
 	});
-}
+
+};
+
+module.exports = meteo;
 
 function getDay(date)
 {
@@ -206,14 +246,3 @@ function getWeatherClass(code)
 
 	return classes[code];
 }
-
-function reportUpdate(time, callback)
-{
-	setTimeout(function(){
-		update(callback);
-	},time);
-}
-
-exports.load = load;
-exports.update = update;
-exports.infos = widgetInfos;

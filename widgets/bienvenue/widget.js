@@ -1,19 +1,15 @@
-var widgetInfos = {
-	id: "bienvenue",
-	name: "Bienvenue !",
-	description: "Ce widget donne les principales informations à propos de ReflectOs et comment débuter.",
-	optimalSize: 2,
+var Widget = require(__dirname+"/../../lib/Widget.js");
+var bienvenue = Object.create(Widget);
+
+bienvenue.id = "bienvenue";
+bienvenue.name = "Bienvenue";
+bienvenue.description = "Ce widget donne les principales informations à propos de ReflectOs et comment débuter.";
+bienvenue.html = "<div class=\"content\"><h2>Bienvenue</h2><p>Bienvenue sur votre installation ReflectOS. Vous pouvez des maintenant configurer cet ecran sur la panel d'administration en accedant à l'ip de l'ordinateur depuis un autre appareil.</div>";
+bienvenue.css = ".wid-bienvenue h2{font-size:50px;margin-top:50px;text-align:center;}";
+bienvenue.optimalSize = 2;
+
+bienvenue.load = function(callback) {
+	var result = bienvenue.__proto__.load.call(bienvenue,callback);
 }
 
-exports.load = function(callback){
-	var result = {
-		infos: widgetInfos, 
-		html: "<div class=\"content\"><h2>Bienvenue</h2><p>Bienvenue sur votre installation ReflectOS. Vous pouvez des maintenant configurer cet ecran sur la panel d'administration en accedant à l'ip de l'ordinateur depuis un autre appareil.</div>", 
-		css: ".wid-bienvenue h2{font-size:50px;margin-top:50px;text-align:center;}",
-		onLoad: "function(){}"
-	}
-	
-	callback(result);
-}
-
-exports.infos = widgetInfos;
+module.exports = bienvenue;

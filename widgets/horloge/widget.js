@@ -1,28 +1,33 @@
 var fs = require('fs');
 var http = require('http');
 
-var widgetInfos = {
-	id: "horloge",
-	name: "Horloge",
-	description: "Ce widget permet d afficher l heure et la date actuelle.",
-	optimalSize: 2,
+var Widget = require(__dirname+"/../../lib/Widget.js");
+var horloge = Object.create(Widget);
+
+horloge.id = "horloge";
+horloge.name = "Horloge";
+horloge.description = "Ce widget permet d afficher l heure et la date actuelle.";
+horloge.html = fs.readFileSync(__dirname+"/default.html","UTF-8");
+horloge.css = fs.readFileSync(__dirname+"/style.css","UTF-8");
+horloge.optimalSize = 2;
+
+horloge.load = function(callback) {
+	var result = horloge.__proto__.load.call(horloge,callback);
 }
 
-var load = function(callback){
-	var result = {
-		infos: widgetInfos,
-		html: fs.readFileSync(__dirname+"/default.html","UTF-8"),
-		css: fs.readFileSync(__dirname+"/style.css","UTF-8"),
-		onLoad: "function(thisApp){"+fs.readFileSync(__dirname+"/onLoad.js","UTF-8")+"}",
-		onUpdate: "function(data){"+fs.readFileSync(__dirname+"/onUpdate.js","UTF-8")+"}"
-	}
-	callback(result);
-}
+horloge.onLoad = function(){
+	console.log("Widget horloge chargé");
+	socket.emit("updateWidget","horloge");
+};
 
-var update = function(callback){
-	var result = {
-		infos : widgetInfos
-	};
+horloge.onUpdate = function(data){
+	$(".wid-horloge .clock .hours").html(""+data.hours);
+	$(".wid-horloge .clock .minutes").html(""+data.minutes);
+	$(".wid-horloge .date").html(data.date);
+};
+
+horloge.update = function(callback){
+	var result = horloge.__proto__.update.call(horloge);
 
 	var date = new Date();
 
@@ -51,17 +56,11 @@ var update = function(callback){
 		minutes: minutes,
 		date: formatDate(date)
 	}
-	reportUpdate(10000,callback);
+	setTimeout(function(){horloge.update(callback)},10000);
 	callback(result);
-}
+};
 
-function reportUpdate(time, callback)
-{
-	setTimeout(function(){
-		update(callback);
-	},time);
-}
-
+module.exports = horloge;
 
 function formatDate(date)
 {
@@ -92,7 +91,3 @@ function formatDate(date)
 
 	return format;
 }
-
-exports.update = update;
-exports.load = load;
-exports.infos = widgetInfos;
