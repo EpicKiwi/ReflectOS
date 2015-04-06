@@ -8,25 +8,36 @@ var Profil = require('./lib/Profil');
 var appsManager = require("./lib/appsManager");
 
 var profils = [];
-var newProfil = Object.create(Profil);
-newProfil.id = "bienvenue";
-newProfil.name = "Bienvenue";
-newProfil.default = true;
-newProfil.widgets = [
-						[
-						{width: 2,widget: null},
-						{width: 1,widget: null},
-						{width: 2,widget: "bienvenue"},
-						{width: 1,widget: null},
-						{width: 2,widget: null}
-						],
-						[
-						{width: 4,widget: null},
-						{width: 4,widget: null}
-						],
-					];
-newProfil.backApps = [];
-profils.push(newProfil);
+
+fs.readFile("profils.json",{encoding:"UTF-8"},function(err,data){
+	if(err == null)
+	{
+		profils = JSON.parse(data);
+	}
+	else
+	{
+		console.warn("Pas de fichier profils.json, utilisation d'un profil par défaut");
+		var newProfil = Object.create(Profil);
+		newProfil.id = "bienvenue";
+		newProfil.name = "Bienvenue";
+		newProfil.default = true;
+		newProfil.widgets = [
+								[
+								{width: 2,widget: null},
+								{width: 1,widget: null},
+								{width: 2,widget: "bienvenue"},
+								{width: 1,widget: null},
+								{width: 2,widget: null}
+								],
+								[
+								{width: 4,widget: null},
+								{width: 4,widget: null}
+								],
+							];
+		newProfil.backApps = [];
+		profils.push(newProfil);
+	}
+});
 
 app.use("/static",express.static(__dirname+"/static"));
 
@@ -139,6 +150,12 @@ io.on('connection',function(socket){
 
 	socket.on("refreshProfils",function(data){
 		profils = data;
+		fs.writeFile("profils.json", JSON.stringify(profils), function(err){
+			if(err != null)
+			{
+				console.err("Erreur lors de l'ecriture du fichier de profils : "+err.Error);
+			}
+		});
 		io.emit("forceRefresh");
 	});
 
