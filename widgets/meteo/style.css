@@ -36,14 +36,9 @@
 	display:inline-block;
 }
 
-.wid-meteo .meteo-row.last, .wid-meteo .meteo-row.first
+.wid-meteo .meteo-row.last
 {
 	margin-bottom: 20px;
-}
-
-.wid-meteo .meteo-row.reduce .meteo-field.meteo-hour
-{
-	text-align: center;
 }
 
 .wid-meteo .meteo-row .meteo-field i
@@ -53,4 +48,13 @@
 	margin-right: 5px;
 	position: relative;
 	bottom: -2px;
+}
+
+.wid-meteo .meteo-dayBanner
+{
+	text-align: center;
+	font-size: 20px;
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
 }

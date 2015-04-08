@@ -44,21 +44,29 @@ meteo.onUpdate = function(data){
 
 		if(lastDay != date.getDay())
 		{
-			lastDay = date.getDay();
 			$(".wid-meteo .content .meteo-row:last-child").addClass('last');
 		}
 		
 		html += "'>";
 
+		if(lastDay != date.getDay())
+		{
+			html += "<div class='meteo-dayBanner'>"+data.forecast[i].day+"</div>";
+		}
+
 		html +=  	"<div class='meteo-icon'><i class=\"wi wi-"+data.forecast[i].weatherClass+"\"></i></div>"+
 						"<div class='meteo-info'>"+
-							"<span class='meteo-field'>"+data.forecast[i].day+"</span>"+
 							"<span class='meteo-field meteo-hour'>"+date.getHours()+" H </span>"+
 							"<span class='meteo-field'><i class=\"wi wi-thermometer\"></i> "+data.forecast[i].temp+"°C</span>"+
 							"<span class='meteo-field compass'><i class=\"wi wi-wind-default _"+data.forecast[i].windCompass+"-deg\"></i>"+data.forecast[i].windSpeed+" Km/h</span>"+
 						"</div>"+
 					"</div>";
 		$(".wid-meteo .content").append(html);
+
+		if(lastDay != date.getDay())
+		{
+			lastDay = date.getDay();
+		}
 	};
 };
 
