@@ -26,8 +26,14 @@
 
 .wid-meteo .meteo-row.reduce .meteo-field
 {
-	width: 25%;
+	width: 35%;
+	text-align: center;
 	display:inline-block;
+}
+
+.wid-meteo .meteo-row.reduce .meteo-field.meteo-hour
+{
+	width: 15%;
 }
 
 .wid-meteo .meteo-row.reduce .meteo-icon
@@ -36,7 +42,7 @@
 	display:inline-block;
 }
 
-.wid-meteo .meteo-row.last
+.wid-meteo .meteo-row.last,.wid-meteo .meteo-row.first
 {
 	margin-bottom: 20px;
 }
